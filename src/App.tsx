@@ -20,7 +20,7 @@ export default function App() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div">
-            图片臊子5
+            图片臊子 5.0
           </Typography>
         </Toolbar>
       </AppBar>
@@ -28,7 +28,7 @@ export default function App() {
       <Container sx={{paddingY: 3}}>
         <Stack spacing={2}>
           <Typography>
-            第五代图片混淆技术，抗等比缩放、抗格式转换、抗有损压缩，无噪点、无彩纹、无格线
+            第五代图片混淆技术，牺牲少许视觉效果获得抗等比缩放能力（现在不用点保存原图了）。
           </Typography>
           <ButtonGroup>
             <MuiFileInput label="选择" value={value} onChange={newValue => setValue(newValue)}/>

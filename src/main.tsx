@@ -4,8 +4,8 @@ import App from './App.tsx'
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material'
 
 const theme = createTheme({
-  palette: {
-    mode: 'dark'
+  colorSchemes: {
+    dark: true
   }
 })
 
