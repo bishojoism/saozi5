@@ -35,7 +35,7 @@ export default function App() {
             第五代图片混淆技术，牺牲少许视觉效果获得抗等比缩放能力（现在不用点保存原图了）。
           </Typography>
           <ButtonGroup>
-            <MuiFileInput slotProps={{ htmlInput: { accept: 'image/*' } }} label="选择" value={value} onChange={newValue => setValue(newValue)} />
+            <MuiFileInput inputProps={{ accept: 'image/*' }} label="选择" value={value} onChange={newValue => setValue(newValue)} />
             <TextField label="密码" value={seed} onChange={event => setSeed(event.target.value)} />
             <Button onClick={() => {
               const { current } = ref
