@@ -1,7 +1,7 @@
 import copy from "./copy"
-import { decrypt, encrypt } from "./saozi"
+import { decrypt, encrypt, N2M } from "./saozi"
 
-const N = 256, M = 3 * N - 2
+const N = 256, M = N2M(N)
 
 export function encryptImage(img: HTMLImageElement, seed: string) {
     const image = document.createElement('img')
