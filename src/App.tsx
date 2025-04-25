@@ -21,7 +21,7 @@ export default function App() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            图片臊子 5.0
+            图片臊子 5.1
           </Typography>
           <IconButton href="https://github.com/bishojoism/saozi5" color="inherit" size="large" edge="end">
             <GitHub />
@@ -33,6 +33,9 @@ export default function App() {
         <Stack spacing={2}>
           <Typography>
             第五代图片混淆技术，牺牲少许视觉效果获得抗等比缩放能力（现在不用点保存原图了）。
+          </Typography>
+          <Typography>
+            v5.1：兼容老旧设备。
           </Typography>
           <ButtonGroup>
             <MuiFileInput inputProps={{ accept: 'image/*' }} label="选择" value={value} onChange={newValue => setValue(newValue)} />

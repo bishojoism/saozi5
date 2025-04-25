@@ -9,7 +9,8 @@ export function encryptImage(img: HTMLImageElement, seed: string) {
         const { width, height } = image
         const w = Math.ceil(width / N), h = Math.ceil(height / N)
         const canvas = document.createElement('canvas')
-        canvas.width = w * N, canvas.height = h * N
+        canvas.width = w * N
+        canvas.height = h * N
         const context = canvas.getContext('2d')
         if (!context) throw new Error('获取画布上下文失败')
         context.drawImage(img, 0, 0, canvas.width, canvas.height)
@@ -29,12 +30,14 @@ export function encryptImage(img: HTMLImageElement, seed: string) {
             yIndex += size
         }
         const newCanvas = document.createElement('canvas')
-        newCanvas.width = yOutput.width, newCanvas.height = yOutput.height
+        newCanvas.width = yOutput.width
+        newCanvas.height = yOutput.height
         const newContext = newCanvas.getContext('2d')
         if (!newContext) throw new Error('获取新画布上下文失败')
         newContext.putImageData(yOutput, 0, 0)
         const reCanvas = document.createElement('canvas')
-        reCanvas.width = Math.round(newCanvas.width / canvas.width * width), reCanvas.height = Math.round(newCanvas.height / canvas.height * height)
+        reCanvas.width = Math.round(newCanvas.width / canvas.width * width)
+        reCanvas.height = Math.round(newCanvas.height / canvas.height * height)
         const reContext = reCanvas.getContext('2d')
         if (!reContext) throw new Error('获取重画布上下文失败')
         reContext.drawImage(newCanvas, 0, 0, reCanvas.width, reCanvas.height)
@@ -53,7 +56,8 @@ export function decryptImage(img: HTMLImageElement, seed: string) {
         const { width, height } = image
         const w = Math.ceil(width / M), h = Math.ceil(height / M)
         const canvas = document.createElement('canvas')
-        canvas.width = w * M, canvas.height = h * M
+        canvas.width = w * M
+        canvas.height = h * M
         const context = canvas.getContext('2d')
         if (!context) throw new Error('获取画布上下文失败')
         context.drawImage(img, 0, 0, canvas.width, canvas.height)
@@ -73,12 +77,14 @@ export function decryptImage(img: HTMLImageElement, seed: string) {
             yIndex++
         }
         const newCanvas = document.createElement('canvas')
-        newCanvas.width = yOutput.width, newCanvas.height = yOutput.height
+        newCanvas.width = yOutput.width
+        newCanvas.height = yOutput.height
         const newContext = newCanvas.getContext('2d')
         if (!newContext) throw new Error('获取新画布上下文失败')
         newContext.putImageData(yOutput, 0, 0)
         const reCanvas = document.createElement('canvas')
-        reCanvas.width = Math.round(newCanvas.width / canvas.width * width), reCanvas.height = Math.round(newCanvas.height / canvas.height * height)
+        reCanvas.width = Math.round(newCanvas.width / canvas.width * width)
+        reCanvas.height = Math.round(newCanvas.height / canvas.height * height)
         const reContext = reCanvas.getContext('2d')
         if (!reContext) throw new Error('获取重画布上下文失败')
         reContext.drawImage(newCanvas, 0, 0, reCanvas.width, reCanvas.height)
