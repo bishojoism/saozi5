@@ -1,4 +1,4 @@
-import { AppBar, Button, ButtonGroup, Container, IconButton, Stack, TextField, Toolbar, Typography } from "@mui/material";
+import { AppBar, Backdrop, Button, ButtonGroup, CircularProgress, Container, IconButton, Stack, TextField, Toolbar, Typography } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { decryptImage, encryptImage } from "./saozi5";
 import { MuiFileInput } from "mui-file-input";
@@ -35,11 +35,11 @@ export default function App() {
             第五代图片混淆技术，牺牲少许视觉效果获得抗等比缩放能力（现在不用点保存原图了）。
           </Typography>
           <Typography>
-            v5.1：兼容老旧设备。
+            v5.1：兼容老旧设备，优化应用界面。
           </Typography>
+          <TextField fullWidth label="密码" value={seed} onChange={event => setSeed(event.target.value)} />
+          <MuiFileInput fullWidth inputProps={{ accept: 'image/*' }} label="选择" value={value} onChange={newValue => setValue(newValue)} />
           <ButtonGroup>
-            <MuiFileInput inputProps={{ accept: 'image/*' }} label="选择" value={value} onChange={newValue => setValue(newValue)} />
-            <TextField label="密码" value={seed} onChange={event => setSeed(event.target.value)} />
             <Button onClick={() => {
               const { current } = ref
               if (current) {
@@ -57,10 +57,21 @@ export default function App() {
               解密
             </Button>
             <Button onClick={callback}>
-              还原
+              重来
+            </Button>
+            <Button onClick={() => {
+              const { current } = ref
+              if (current) {
+                const a = document.createElement('a')
+                a.href = current.src
+                a.download = ''
+                a.click()
+              }
+            }}>
+              保存
             </Button>
           </ButtonGroup>
-          <img ref={ref} />
+          <img ref={ref} alt="输出"/>
         </Stack>
       </Container>
     </>
