@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { decryptImage, encryptImage } from "./saozi5";
 import { MuiFileInput } from "mui-file-input";
 import { GitHub } from "@mui/icons-material";
+import { saveAs } from "file-saver";
 
 export default function App() {
   const [seed, setSeed] = useState('')
@@ -21,7 +22,7 @@ export default function App() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            图片臊子 5.1
+            图片臊子 5.2
           </Typography>
           <IconButton href="https://github.com/bishojoism/saozi5" color="inherit" size="large" edge="end">
             <GitHub />
@@ -33,6 +34,9 @@ export default function App() {
         <Stack spacing={2}>
           <Typography>
             第五代图片混淆技术，牺牲少许视觉效果获得抗等比缩放能力（现在不用点保存原图了）。
+          </Typography>
+          <Typography>
+            v5.2：修复保存逻辑。
           </Typography>
           <Typography>
             v5.1：兼容老旧设备，优化应用界面。
@@ -62,10 +66,7 @@ export default function App() {
             <Button onClick={() => {
               const { current } = ref
               if (current) {
-                const a = document.createElement('a')
-                a.href = current.src
-                a.download = ''
-                a.click()
+                saveAs(current.src, "输出.png")
               }
             }}>
               保存

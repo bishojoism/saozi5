@@ -15,6 +15,7 @@
     "@mui/icons-material": "^7.0.2",
     "@mui/material": "^7.0.2",
     "@types/random-seed": "^0.3.5",
+    "file-saver": "^2.0.5",
     "mui-file-input": "^7.0.0",
     "random-seed": "^0.3.0",
     "react": "^19.1.0",
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.25.1",
+    "@types/file-saver": "^2.0.7",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-legacy": "^6.1.0",
