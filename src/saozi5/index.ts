@@ -45,7 +45,7 @@ export function encryptImage(img: HTMLImageElement, seed: string) {
             if (!blob) throw new Error('转为类文件对象失败')
             URL.revokeObjectURL(img.src)
             img.src = URL.createObjectURL(blob)
-        })
+        }, "image/webp", 0.95)
     }
     image.src = img.src
 }
@@ -92,7 +92,7 @@ export function decryptImage(img: HTMLImageElement, seed: string) {
             if (!blob) throw new Error('转为类文件对象失败')
             URL.revokeObjectURL(img.src)
             img.src = URL.createObjectURL(blob)
-        })
+        }, "image/webp", 0.95)
     }
     image.src = img.src
 }
