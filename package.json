@@ -17,6 +17,7 @@
     "@types/random-seed": "^0.3.5",
     "file-saver": "^2.0.5",
     "mui-file-input": "^7.0.0",
+    "ns9_1": "^0.1.0",
     "random-seed": "^0.3.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
