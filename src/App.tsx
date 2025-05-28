@@ -139,7 +139,7 @@ export default function App() {
               保存
             </Button>
           </ButtonGroup>
-          <img ref={ref} alt="输出" />
+          <img ref={ref} alt="预览" />
         </Stack>
       </Container>
     </>
