@@ -57,7 +57,7 @@ export default function App() {
                 v5.4：重新兼容老旧设备。
               </Typography>
               <Typography gutterBottom>
-                v5.3：放弃兼容老旧设备，压缩处理后的图片，新增代号功能：将图片传至图床（推荐<Link href="https://catbox.moe">Catbox</Link>，链接加上前缀<code>https://cdn.cdnjson.com/pic.html?url=</code>即可代理图片令国内可访问），获取到的链接用<Link href="https://yinzhe9.netlify.app">喵喵隐者9</Link>加密，即可生成代号。
+                v5.3：放弃兼容老旧设备，压缩处理后的图片，新增代号功能：将图片传至图床（推荐<Link href="https://catbox.moe">Catbox</Link>，链接在<code>https://</code>后加上<code>i0.wp.com/</code>即可代理图片令国内可访问），获取到的链接用<Link href="https://yinzhe9.netlify.app">喵喵隐者9</Link>加密，即可生成代号。
               </Typography>
               <Typography gutterBottom>
                 v5.2：修复保存逻辑。
@@ -67,21 +67,6 @@ export default function App() {
               </Typography>
             </AccordionDetails>
           </Accordion>
-          <Typography>
-            第五代图片混淆技术，牺牲少许视觉效果获得抗等比缩放能力（现在不用点保存原图了）。
-          </Typography>
-          <Typography>
-            v5.4：重新兼容老旧设备。
-          </Typography>
-          <Typography>
-            v5.3：放弃兼容老旧设备，压缩处理后的图片，新增代号功能：将图片传至图床（推荐<Link href="https://catbox.moe">Catbox</Link>，链接在<code>https://</code>后加上<code>i0.wp.com/</code>即可代理图片令国内可访问），获取到的链接用<Link href="https://yinzhe9.netlify.app">喵喵隐者9</Link>加密，即可生成代号。
-          </Typography>
-          <Typography>
-            v5.2：修复保存逻辑。
-          </Typography>
-          <Typography>
-            v5.1：兼容老旧设备，优化应用界面。
-          </Typography>
           <TextField fullWidth label="密码" value={seed} onChange={event => setSeed(event.target.value)} />
           <MuiFileInput fullWidth inputProps={{ accept: 'image/*' }} label="选择" value={value} onChange={newValue => setValue(newValue)} />
           <TextField label="代号" value={code} onChange={event => setCode(event.target.value)} />
