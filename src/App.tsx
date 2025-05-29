@@ -226,7 +226,7 @@ export default function App() {
       </AppBar>
       <Toolbar />
       <Container sx={{ paddingY: 3 }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', my: 3 }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
           <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
             <Tab value="new" label="新版" />
             <Tab value="old" label="旧版" />
