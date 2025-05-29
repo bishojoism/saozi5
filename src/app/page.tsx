@@ -1,6 +1,8 @@
+'use client'
+
 import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Button, ButtonGroup, CircularProgress, Container, IconButton, Link, Stack, TextField, Toolbar, Typography } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { decryptImage, encryptImage } from "./saozi5";
+import { decryptImage, encryptImage } from "@/saozi5";
 import { MuiFileInput } from "mui-file-input";
 import { ExpandMore, GitHub } from "@mui/icons-material";
 import { saveAs } from "file-saver";
@@ -33,7 +35,7 @@ export default function App() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            图片臊子 5.5
+            图片臊子 5.6
           </Typography>
           <IconButton href="https://github.com/bishojoism/saozi5" color="inherit" size="large" edge="end">
             <GitHub />
@@ -50,6 +52,9 @@ export default function App() {
               </Typography>
             </AccordionSummary>
             <AccordionDetails>
+              <Typography gutterBottom>
+                v5.6：换成Next.js框架。
+              </Typography>
               <Typography gutterBottom>
                 v5.5：新增制作代号按钮。
               </Typography>
@@ -82,7 +87,7 @@ export default function App() {
                   const body = new FormData()
                   body.set('reqtype', 'fileupload')
                   body.set('fileToUpload', blob)
-                  const output = await fetch(`https://cors-anywhere.herokuapp.com/https://catbox.moe/user/api.php`, {
+                  const output = await fetch(`/api?url=https://catbox.moe/user/api.php`, {
                     method: 'POST',
                     body
                   })
