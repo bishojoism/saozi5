@@ -7,8 +7,8 @@ const nextConfig: NextConfig = {
     // Fixes `Error occurred prerendering page "/"`
     config.output.webassemblyModuleFilename =
       isServer && !dev
-        ? '../static/pkg/[modulehash].wasm'
-        : 'static/pkg/[modulehash].wasm'
+        ? '../static/pkg/f60ed572f229a26a.wasm'
+        : 'static/pkg/f60ed572f229a26a.wasm'
 
     // Since Webpack 5 doesn't enable WebAssembly by default, we should do it manually
     config.experiments = { ...config.experiments, asyncWebAssembly: true }
