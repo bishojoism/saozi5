@@ -160,9 +160,6 @@ function New() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
-              v5.7：换成兼容Chrome的图片代理。
-            </Typography>
-            <Typography>
               v5.6：制作新版界面。
             </Typography>
           </AccordionDetails>
@@ -197,7 +194,7 @@ function New() {
                     body
                   })
                   if (!output.ok) throw await output.text()
-                  setText(encode(`https://images.weserv.nl/?url=${(await output.text())}`))
+                  setText(encode(`https://i0.wp.com/${(await output.text()).substring('https://'.length)}`))
                   setLoading(false)
                 } catch (e) {
                   setLoading(false)
@@ -220,7 +217,7 @@ export default function App() {
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            图片臊子 5.7
+            图片臊子 5.6
           </Typography>
           <IconButton href="https://github.com/bishojoism/saozi5" color="inherit" size="large" edge="end">
             <GitHub />
@@ -230,6 +227,9 @@ export default function App() {
       <Toolbar />
       <Container sx={{ paddingY: 3 }}>
         <Stack spacing={3}>
+          <Typography variant="h6" component="div">
+            新版与大多数设备、浏览器不兼容，如果点了使用什么都不显示，请使用旧版。
+          </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
               <Tab value="new" label="新版" />
