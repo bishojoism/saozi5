@@ -226,18 +226,23 @@ export default function App() {
       </AppBar>
       <Toolbar />
       <Container sx={{ paddingY: 3 }}>
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', mb: 3 }}>
-          <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
-            <Tab value="new" label="新版" />
-            <Tab value="old" label="旧版" />
-          </Tabs>
-        </Box>
-        <Box hidden={value != 'new'}>
-          <New />
-        </Box>
-        <Box hidden={value != 'old'}>
-          <Old />
-        </Box>
+        <Stack spacing={3}>
+          <Typography variant="h5" component="div">
+            新版与大多数设备、浏览器不兼容，如果点了使用什么都不显示，请使用旧版。
+          </Typography>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
+              <Tab value="new" label="新版" />
+              <Tab value="old" label="旧版" />
+            </Tabs>
+          </Box>
+          <Box hidden={value != 'new'}>
+            <New />
+          </Box>
+          <Box hidden={value != 'old'}>
+            <Old />
+          </Box>
+        </Stack>
       </Container>
     </>
   )
