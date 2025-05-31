@@ -171,7 +171,7 @@ function New() {
               <TextField label="代号" value={code} onChange={event => setCode(event.target.value)} />
               <Button disabled={!code} onClick={() => {
                 if (!code) return
-                setUrl(decode(code))
+                setUrl(decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/'))
               }}>使用</Button>
               <img alt="预览" src={url} />
             </Stack>
@@ -227,9 +227,6 @@ export default function App() {
       <Toolbar />
       <Container sx={{ paddingY: 3 }}>
         <Stack spacing={3}>
-          <Typography variant="h6" component="div">
-            新版与大多数设备、浏览器不兼容，如果点了使用什么都不显示，请使用旧版。
-          </Typography>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
               <Tab value="new" label="新版" />
