@@ -1,10 +1,11 @@
-import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, IconButton, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { decryptImage, encryptImage } from "./saozi5";
 import { MuiFileInput } from "mui-file-input";
-import { ExpandMore, GitHub } from "@mui/icons-material";
+import { ExpandMore, GitHub, Newspaper } from "@mui/icons-material";
 import { saveAs } from "file-saver";
 import { decode, encode, init } from "ns9_1";
+import useLocalStorageBoolean from "./useLocalStorageBoolean";
 
 function Old() {
   const [seed, setSeed] = useState('')
@@ -58,7 +59,6 @@ function Old() {
         <Card>
           <CardContent>
             <Stack spacing={2}>
-
               <TextField label="密码" value={seed} onChange={event => setSeed(event.target.value)} />
               <MuiFileInput inputProps={{ accept: 'image/*' }} label="选择" value={value} onChange={setValue} />
               <TextField label="代号" value={code} onChange={event => setCode(event.target.value)} />
@@ -211,14 +211,128 @@ function New() {
 }
 
 export default function App() {
+  const [show, setShow] = useLocalStorageBoolean("周刊第一期", true)
+  const handleClose = () => setShow(false)
   const [value, setValue] = useState('new')
   return (
     <>
+      <Dialog fullWidth open={show} onClose={handleClose} maxWidth="md">
+        <DialogTitle>
+          报纸
+        </DialogTitle>
+        <DialogContent>
+          <h1>袅吧月刊第一期（2025年5月）</h1>
+          <blockquote>
+            编者按：欢迎大家投稿《袅吧月刊》，可通过私信“图片臊子作者”投稿。
+          </blockquote>
+          <pre><code>
+            编者：“美少女主义”
+          </code></pre>
+          <h2 id="封面">
+            封面
+          </h2>
+          <blockquote>
+            编者按：列宁说过：“报纸不仅是集体的宣传员和集体的鼓动员，而且是集体的组织者。”我认为，我们袅吧很有必要出一份报纸。
+          </blockquote>
+          <pre><code>
+            作者：“美少女主义”
+          </code></pre>
+          <img alt="封面图" src="https://i1.wp.com/files.catbox.moe/fsqx2m.jpg" width="100%" />
+          <h2 id="目录">
+            目录
+          </h2>
+          <ol>
+            <li><Link href="#封面">封面</Link></li>
+            <li><Link href="#目录">目录</Link></li>
+            <li><Link href="#第一次色图革命">第一次色图革命</Link></li>
+            <li><Link href="#本月色图精选集">本月色图精选集</Link></li>
+          </ol>
+          <h2 id="第一次色图革命">
+            第一次色图革命
+          </h2>
+          <blockquote>
+            编者按：阿姆斯特朗说过：“我的一小步，人类的一大步。”我觉得，图片臊子5新出的“代号”功能意义非凡，乃不世之功，完全配得上“第一次色图革命”的称号。
+          </blockquote>
+          <pre><code>
+            作者：“美少女主义”
+          </code></pre>
+          <p>
+            2025年5月25日11点42分，“图片臊子作者”发帖：<Link href="https://tieba.baidu.com/p/9739011132">“混淆图也能被秒删是吧，看我马上开发一种能把图片直接加密成文本的技术。”</Link>
+          </p>
+          <p>
+            当天20点09分，“图片臊子作者”发帖：<Link href="https://tieba.baidu.com/p/9739878308">“我做出来了，技术革新，网址不变。”</Link>
+          </p>
+          <p>
+            从此，<Link href="https://saozi5.netlify.app">图片臊子5</Link>多了一个“代号”功能：将图片直接转化为文字。
+          </p>
+          <p>
+            2025年5月31日09点00分，“图片臊子作者”回帖：<Link href="https://tieba.baidu.com/p/9752783642">“我修了一下，把i0强行转成i1了，现在应该兼容各个浏览器了，再试一下。”</Link>
+          </p>
+          <p>
+            从此，“代号”功能彻底完工。
+          </p>
+          <h2 id="本月色图精选集">
+            本月色图精选集
+          </h2>
+          <blockquote>
+            编者按：苏格拉底说过：“未经审视的生活是不值得过的。”这份精选集收录了吧友们纯粹用新技术发的所有色图。
+          </blockquote>
+          <pre><code>
+            作者：“美少女主义”
+          </code></pre>
+          <ol>
+            <li>
+              粮求各娃区姿卷、洪吊游喝睁券病慢。纸振匹烈习另芒：厨姑知一、
+            </li>
+            <li>
+              粮求各娃区姿卷洪吊游、喝睁券？病慢纸振干姜侍机，翻疏元患刀
+            </li>
+            <li>
+              粮求各娃区…姿：卷洪吊游？喝睁券病慢纸振扑机翻槽哑：戴哑观
+            </li>
+            <li>
+              粮求各娃区姿卷洪吊游喝睁。券…病慢纸振剪萌测米武校觉
+            </li>
+            <li>
+              粮求各娃区！姿卷洪。吊游喝睁券病慢纸！振任日呼德呼劈！妥艳
+            </li>
+            <li>
+              粮求各娃区姿卷？洪吊游喝睁券病慢纸振加羡力凯烛季觉
+            </li>
+            <li>
+              粮：求各娃区姿卷洪吊游喝睁券病慢纸振劫晓：捉帖臂序妥艳
+            </li>
+            <li>
+              粮求各娃区姿卷洪吊游，喝睁券病慢~纸壤、沉番…低沉番塘？休挽艳
+            </li>
+            <li>
+              粮求各娃区姿卷？洪吊游喝睁券病慢、纸振干伪眼唤者、剃：停加耍观
+            </li>
+            <li>
+              粮求各娃区姿卷洪，吊游喝睁券病慢纸振俭号恋华腔：润剂渡壤。观
+            </li>
+            <li>
+              粮求各娃区姿卷洪吊游喝睁券病。慢纸振吓？柔短币兼湿规
+            </li>
+            <li>
+              粮求、各娃区姿卷洪吊游喝睁券病慢纸振厨德仰带写，斗画榆，一
+            </li>
+          </ol>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>
+            关闭
+          </Button>
+        </DialogActions>
+      </Dialog >
       <AppBar>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             图片臊子 5.6
           </Typography>
+          <IconButton onClick={() => setShow(true)} color="inherit">
+            <Newspaper />
+          </IconButton>
           <IconButton href="https://github.com/bishojoism/saozi5" color="inherit" size="large" edge="end">
             <GitHub />
           </IconButton>
