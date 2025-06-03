@@ -345,7 +345,7 @@ export default function App() {
             <AlertTitle>
               请用臊子5新版！！！
             </AlertTitle>
-            删帖事小，封号事大。现在审核加强了，所有把图片转换成另一张图片的混淆技术均已失效，包括ybzj、小番茄、臊子5旧版、图夹2。这些工具的用户均有大量被封号的案例，若是不识时务，别怪我没警告过你。
+            删帖事小，封号事大。现在审核加强了，所有把图片转换成另一张图片的混淆技术均已失效，包括但不限于ybzj、小番茄、臊子5旧版、图夹2。这些工具的用户均有大量被封号的案例，若是不识时务，别怪我没警告过你。
           </Alert>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
