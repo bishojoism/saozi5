@@ -173,6 +173,11 @@ function New() {
                 if (!code) return
                 setUrl(decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/'))
               }}>使用</Button>
+              {url &&
+                <Typography>
+                  <Link href={url}>{url}</Link>
+                </Typography>
+              }
               <img alt="预览" src={url} />
             </Stack>
           </CardContent>
