@@ -268,13 +268,7 @@ function EverythingCode() {
                   }
                   else if (code.startsWith('油')) files = await de(code.substring(1))
                   else throw new Error('不支持这种格式的代号')
-                  const a = document.createElement('a')
-                  for (let file of (files as File[])) {
-                    a.download = file.name
-                    a.href = URL.createObjectURL(file)
-                    a.click()
-                    URL.revokeObjectURL(a.href)
-                  }
+                  for (let file of (files as File[])) saveAs(file, file.name)
                   setLoading(false)
                 } catch (e) {
                   setLoading(false)
