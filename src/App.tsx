@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Alert, AlertTitle, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { decryptImage, encryptImage } from "./saozi5";
 import { MuiFileInput } from "mui-file-input";
@@ -346,22 +346,16 @@ export default function App() {
       <Toolbar />
       <Container sx={{ paddingY: 3 }}>
         <Stack spacing={3}>
-          <Alert severity="warning">
-            <AlertTitle>
-              请用臊子5新版！！！
-            </AlertTitle>
-            删帖事小，封号事大。现在审核加强了，所有把图片转换成另一张图片的混淆技术统统失效，包括但不限于ybzj、小番茄、臊子5旧版、图夹2。这些工具的用户均有大量被封号的案例，若是不识时务，别怪我没警告过你。
-          </Alert>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
-              <Tab value="new" label="新版（推荐）" />
-              <Tab value="old" label="旧版（敢用你就完蛋了）" />
+              <Tab value="image code" label="图片代号" />
+              <Tab value="image confusion" label="图片混淆" />
             </Tabs>
           </Box>
-          <Box hidden={value != 'new'}>
+          <Box hidden={value != 'image code'}>
             <New />
           </Box>
-          <Box hidden={value != 'old'}>
+          <Box hidden={value != 'image confusion'}>
             <Old />
           </Box>
         </Stack>
