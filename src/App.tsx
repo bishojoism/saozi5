@@ -335,6 +335,9 @@ export default function App() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             臊子 5.6
           </Typography>
+          <Typography>
+            QQ群：<Link href="https://qun.qq.com/universal-share/share?ac=1&authKey=5BH%2BQbzUdqRJmkE1BL7omLz7B4rZ02TlHrlS964ZTKp%2FepW45HdTmMRJdPVBGGED&busi_data=eyJncm91cENvZGUiOiIxMDQ1ODQ3MDA3IiwidG9rZW4iOiIzdm5QYmFmNWk3bmhPNGYvTzJYVFpxdFEvYUpWTW5keE9MNFFqcDNsTUJ1WlNLd3NrMWkwK0d2NEV1czB2S2FtIiwidWluIjoiMTIyNTc2MjMyNSJ9&data=gfWKJ7uQy1fDBMFYheu3VePdq7ukWXxDoWi8Mg4nzGj8kh5N1jGW7izKGsYKqeZDddNKV3Ck8zllL4PN_cuBpQ&svctype=4&tempid=h5_group_info">1045847007</Link>
+          </Typography>
           <IconButton onClick={() => setShow(true)} color="inherit">
             <Newspaper />
           </IconButton>
