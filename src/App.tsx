@@ -1,13 +1,14 @@
-import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, InputAdornment, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { decryptImage, encryptImage } from "./saozi5";
 import { MuiFileInput } from "mui-file-input";
-import { ExpandMore, GitHub, Newspaper } from "@mui/icons-material";
+import { ContentCopy, ExpandMore, GitHub, Newspaper } from "@mui/icons-material";
 import { saveAs } from "file-saver";
 import { decode, encode, init } from "ns9_1";
 import useLocalStorageBoolean from "./useLocalStorageBoolean";
+import { de, en } from "./emc";
 
-function Old() {
+function ImageConfusion() {
   const [seed, setSeed] = useState('')
   const ref = useRef<HTMLImageElement>(null)
   const [value, setValue] = useState<File | null>(null)
@@ -140,7 +141,7 @@ function Old() {
   )
 }
 
-function New() {
+function ImageCode() {
   const [url, setUrl] = useState<string>()
   const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
@@ -215,10 +216,117 @@ function New() {
   )
 }
 
+function EverythingCode() {
+  const [code, setCode] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [files, setFiles] = useState<File[]>([])
+  const [text, setText] = useState('')
+  const ref = useRef<HTMLInputElement>(null)
+  return (
+    <>
+      <Backdrop sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} open={loading}>
+        <CircularProgress color="inherit" />
+      </Backdrop>
+      <Stack spacing={3}>
+        <Accordion>
+          <AccordionSummary expandIcon={<ExpandMore />}>
+            <Typography>
+              第二次色图革命，能将任意格式文件转为文字（支持多文件、大文件，兼容图片代号）。
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails>
+            <Typography>
+              v5.7：制作万物代号功能。
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+        <Card>
+          <CardHeader title="使用代号" />
+          <CardContent>
+            <Stack spacing={2}>
+              <TextField label="代号" value={code} onChange={event => setCode(event.target.value)} />
+              <Button disabled={!code} onClick={async () => {
+                if (!code) return
+                setLoading(true)
+                try {
+                  let files: File[] = []
+                  if (code.startsWith('粮')) {
+                    let err
+                    for (let i = 0; i < 5; i++) {
+                      try {
+                        const url = decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/')
+                        const res = await fetch(url)
+                        if (res.status !== 200) throw new Error(res.statusText)
+                        files.push(new File([await res.blob()], url.substring(url.lastIndexOf('/') + 1)))
+                        err = undefined
+                        break
+                      } catch (e: any) {
+                        if (e) err = e
+                      }
+                    }
+                    if (err) throw err
+                  }
+                  else if (code.startsWith('油')) files = await de(code.substring(1))
+                  else throw new Error('不支持这种格式的代号')
+                  const a = document.createElement('a')
+                  for (let file of (files as File[])) {
+                    a.download = file.name
+                    a.href = URL.createObjectURL(file)
+                    a.click()
+                    URL.revokeObjectURL(a.href)
+                  }
+                  setLoading(false)
+                } catch (e) {
+                  setLoading(false)
+                  alert(e)
+                }
+              }}>使用</Button>
+            </Stack>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader title="制作代号" />
+          <CardContent>
+            <Stack spacing={2}>
+              <MuiFileInput multiple label="选择" value={files} onChange={setFiles} />
+              <Button disabled={!files.length} onClick={async () => {
+                if (!files.length) return
+                setLoading(true)
+                try {
+                  setText('油' + await en(files))
+                  setLoading(false)
+                } catch (e) {
+                  setLoading(false)
+                  alert(e)
+                }
+              }}>制作</Button>
+              <TextField label="代号" value={text} disabled={!text} inputRef={ref} slotProps={{
+                input: {
+                  endAdornment:
+                    <InputAdornment position="end">
+                      <IconButton onClick={() => {
+                        const {current} = ref
+                        if (!current) return
+                        current.select()
+                        document.execCommand('copy')
+                      }}>
+                        <ContentCopy />
+                      </IconButton>
+                    </InputAdornment>
+                }
+              }} />
+            </Stack>
+          </CardContent>
+        </Card>
+      </Stack>
+    </>
+  )
+}
+
 export default function App() {
   const [show, setShow] = useLocalStorageBoolean("周刊第一期", true)
   const handleClose = () => setShow(false)
-  const [value, setValue] = useState('new')
+  const [value, setValue] = useState('everything code')
   return (
     <>
       <Dialog fullWidth open={show} onClose={handleClose} maxWidth="md">
@@ -351,15 +459,19 @@ export default function App() {
         <Stack spacing={3}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
-              <Tab value="image code" label="图片代号" />
-              <Tab value="image confusion" label="图片混淆" />
+              <Tab value="everything code" label="万物代号（较慢）" />
+              <Tab value="image code" label="图片代号（推荐）" />
+              <Tab value="image confusion" label="图片混淆（别用）" />
             </Tabs>
           </Box>
+          <Box hidden={value != 'everything code'}>
+            <EverythingCode />
+          </Box>
           <Box hidden={value != 'image code'}>
-            <New />
+            <ImageCode />
           </Box>
           <Box hidden={value != 'image confusion'}>
-            <Old />
+            <ImageConfusion />
           </Box>
         </Stack>
       </Container>
