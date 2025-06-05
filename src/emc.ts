@@ -52,7 +52,7 @@ async function split(data: Uint8Array): Promise<File[]> {
     return files
 }
 
-const jpg = new Uint8Array(await (await fetch('https://tgi12.jia.com/114/936/14936926.jpg')).arrayBuffer())
+const jpg = new Uint8Array(await (await fetch('/花.jpg')).arrayBuffer())
 
 function encrypt(data: Uint8Array, limit: number) {
     let images: Uint8Array[] = []
