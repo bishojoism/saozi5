@@ -459,7 +459,7 @@ export default function App() {
         <Stack spacing={3}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
             <Tabs value={value} onChange={(_, newValue) => setValue(newValue)}>
-              <Tab value="everything code" label="万物代号（较慢）" />
+              <Tab value="everything code" label="万物代号（贼慢）" />
               <Tab value="image code" label="图片代号（推荐）" />
               <Tab value="image confusion" label="图片混淆（别用）" />
             </Tabs>
