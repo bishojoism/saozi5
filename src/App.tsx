@@ -220,7 +220,7 @@ function Everything({file}: {file: File}) {
   const [node, setNode] = useState<ReactNode>(null)
   useEffect(() => {
     const {type} = file
-    const url = (type.startsWith('image/') || type.startsWith('video/') || type.startWith('audio/')) ? URL.createObjectURL(file) : undefined
+    const url = (type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
     if (type.startsWith('image/')) setNode(<img src={url} />)
     else if (type.startsWith('video/')) setNode(<video src={url} />)
     else if (type.startsWith('audio/')) setNode(<audio src={url} />)
