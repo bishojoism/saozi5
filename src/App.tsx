@@ -6,7 +6,7 @@ import { ContentCopy, ExpandMore, GitHub, Newspaper } from "@mui/icons-material"
 import { saveAs } from "file-saver";
 import { decode, encode, init } from "ns9_1";
 import useLocalStorageBoolean from "./useLocalStorageBoolean";
-import { de, en } from "./emc";
+import { de, de2, en2 } from "./emc";
 
 function ImageConfusion() {
   const [seed, setSeed] = useState('')
@@ -236,6 +236,9 @@ function EverythingCode() {
           </AccordionSummary>
           <AccordionDetails>
             <Typography>
+              v5.8：用嵌套来缩短代号。
+            </Typography>
+            <Typography>
               v5.7：制作万物代号功能。
             </Typography>
           </AccordionDetails>
@@ -267,6 +270,7 @@ function EverythingCode() {
                     if (err) throw err
                   }
                   else if (code.startsWith('油')) files = await de(code.substring(1))
+                  else if (code.startsWith('米')) files = await de2(code.substring(1))
                   else throw new Error('不支持这种格式的代号')
                   for (let file of files) {
                     saveAs(file, file.name)
@@ -290,7 +294,7 @@ function EverythingCode() {
                 if (!files.length) return
                 setLoading(true)
                 try {
-                  setText('油' + await en(files))
+                  setText('米' + await en2(files))
                   setLoading(false)
                 } catch (e) {
                   setLoading(false)
@@ -302,7 +306,7 @@ function EverythingCode() {
                   endAdornment:
                     <InputAdornment position="end">
                       <IconButton onClick={() => {
-                        const {current} = ref
+                        const { current } = ref
                         if (!current) return
                         current.select()
                         document.execCommand('copy')

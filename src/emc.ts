@@ -126,10 +126,26 @@ async function dec(urls: string[]) {
     return images
 }
 
+async function e(files: File[]) {
+    return (await enc(encrypt(await join(files), 1048576))).join('\n')
+}
+
+async function d(index: string) {
+    return split(decrypt(await dec(index.split('\n'))))
+}
+
 export async function en(files: File[]) {
-    return encode((await enc(encrypt(await join(files), 1048576))).join('\n'))
+    return encode(await e(files))
 }
 
 export async function de(code: string) {
-    return split(decrypt(await dec((await decode(code)).split('\n'))))
+    return d(await decode(code))
+}
+
+export async function en2(files: File[]) {
+    return encode(await e([new File([await e(files)], "index.txt")]))
+}
+
+export async function de2(code: string) {
+    return d(await (await d(await decode(code)))[0].text())
 }
