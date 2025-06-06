@@ -7,6 +7,7 @@ import { saveAs } from "file-saver";
 import { decode, encode, init } from "ns9_1";
 import useLocalStorageBoolean from "./useLocalStorageBoolean";
 import { de, de2, en2 } from "./emc";
+import mime from "mime";
 
 function ImageConfusion() {
   const [seed, setSeed] = useState('')
@@ -216,11 +217,13 @@ function ImageCode() {
   )
 }
 
-function Everything({file}: {file: File}) {
+function Everything({ file }: { file: File }) {
   const [node, setNode] = useState<ReactNode>(null)
   useEffect(() => {
-    const {type} = file
-    const url = (type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
+    const { name } = file
+    const index = name.lastIndexOf('.')
+    const type = index === -1 ? '' : mime.getType(name.substring(index + 1)) ?? ''
+    const url = (type && type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
     if (type.startsWith('image/')) setNode(<img src={url} alt="预览" />)
     else if (type.startsWith('video/')) setNode(<video src={url} controls />)
     else if (type.startsWith('audio/')) setNode(<audio src={url} controls />)
@@ -297,11 +300,11 @@ function EverythingCode() {
                 }
               }}>使用</Button>
               {
-                data.map((value, index) => 
+                data.map((value, index) =>
                   <Box key={index}>
                     <Typography>
                       {value.name}
-                      <Button onClick={() => {saveAs(value, value.name)}}>
+                      <Button onClick={() => { saveAs(value, value.name) }}>
                         保存
                       </Button>
                     </Typography>
