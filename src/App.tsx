@@ -6,7 +6,7 @@ import { ContentCopy, ExpandMore, GitHub, Newspaper } from "@mui/icons-material"
 import { saveAs } from "file-saver";
 import { decode, encode, init } from "ns9_1";
 import useLocalStorageBoolean from "./useLocalStorageBoolean";
-import { de, de2, en2 } from "./emc";
+import { de, de2, en2 } from "./core";
 import mime from "mime";
 
 function ImageConfusion() {
@@ -251,10 +251,13 @@ function EverythingCode() {
         <Accordion>
           <AccordionSummary expandIcon={<ExpandMore />}>
             <Typography>
-              第二次色图革命，能将任意格式文件转为文字（支持多文件、大文件，兼容图片代号）。
+              第二次色图革命，能将任意格式、任意数量、任意大小的文件转为文字（兼容图片代号）。
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
+            <Typography>
+              v5.9：制作预览功能，增加网址替换。
+            </Typography>
             <Typography>
               v5.8：用嵌套来缩短代号。
             </Typography>
