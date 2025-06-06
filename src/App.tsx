@@ -305,7 +305,7 @@ function EverythingCode() {
                         保存
                       </Button>
                     </Typography>
-                    <Everything file={value}/>
+                    <Everything file={value} />
                   </Box>)
               }
             </Stack>
