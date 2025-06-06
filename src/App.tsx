@@ -286,7 +286,7 @@ function EverythingCode() {
                     <Typography>
                       {value.name}
                       <Button onClick={() => {saveAs(value, value.name)}}>
-                        下载
+                        保存
                       </Button>
                     </Typography>
                   </Box>)
