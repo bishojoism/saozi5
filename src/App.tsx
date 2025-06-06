@@ -96,7 +96,7 @@ function ImageConfusion() {
                     const { current } = ref
                     if (current) {
                       URL.revokeObjectURL(current.src)
-                      current.src = URL.createObjectURL(await (await fetch(decode(code))).blob())
+                      current.src = URL.createObjectURL(await (await fetch(decode(code.replace('https://i0.wp.com/', 'https://i1.wp.com/').replace('https://images.weserv.nl/?url=https://', 'https://i1.wp.com/').replace('https://cdn.cdnjson.com/pic.html?url=https://', 'https://i1.wp.com/')))).blob())
                     }
                   } catch (e) {
                     alert(e)
@@ -173,7 +173,7 @@ function ImageCode() {
               <TextField label="代号" value={code} onChange={event => setCode(event.target.value)} />
               <Button disabled={!code} onClick={() => {
                 if (!code) return
-                setUrl(decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/'))
+                setUrl(decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/').replace('https://images.weserv.nl/?url=https://', 'https://i1.wp.com/').replace('https://cdn.cdnjson.com/pic.html?url=https://', 'https://i1.wp.com/'))
               }}>使用</Button>
               {url &&
                 <Typography>
@@ -224,7 +224,7 @@ function Everything({ file }: { file: File }) {
     const index = name.lastIndexOf('.')
     const type = index === -1 ? '' : mime.getType(name.substring(index + 1)) ?? ''
     const url = (type && type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
-    if (type.startsWith('image/')) setNode(<img src={url} alt="预览" width="100%"/>)
+    if (type.startsWith('image/')) setNode(<img src={url} alt="预览" width="100%" />)
     else if (type.startsWith('video/')) setNode(<video src={url} controls width="100%" />)
     else if (type.startsWith('audio/')) setNode(<audio src={url} controls />)
     else setNode(null)
@@ -277,7 +277,7 @@ function EverythingCode() {
                     let err
                     for (let i = 0; i < 5; i++) {
                       try {
-                        const url = decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/')
+                        const url = decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/').replace('https://images.weserv.nl/?url=https://', 'https://i1.wp.com/').replace('https://cdn.cdnjson.com/pic.html?url=https://', 'https://i1.wp.com/')
                         const res = await fetch(url)
                         if (res.status !== 200) throw new Error(res.statusText)
                         files.push(new File([await res.blob()], url.substring(url.lastIndexOf('/') + 1)))
