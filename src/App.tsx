@@ -222,6 +222,7 @@ function EverythingCode() {
   const [files, setFiles] = useState<File[]>([])
   const [text, setText] = useState('')
   const ref = useRef<HTMLInputElement>(null)
+  const [data, setData] = useState<File[]>([])
   return (
     <>
       <Backdrop sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })} open={loading}>
@@ -272,16 +273,24 @@ function EverythingCode() {
                   else if (code.startsWith('油')) files = await de(code.substring(1))
                   else if (code.startsWith('米')) files = await de2(code.substring(1))
                   else throw new Error('不支持这种格式的代号')
-                  for (let file of files) {
-                    saveAs(file, file.name)
-                    await new Promise(resolve => setTimeout(resolve, 1000))
-                  }
+                  setData(files)
                   setLoading(false)
                 } catch (e) {
                   setLoading(false)
                   alert(e)
                 }
               }}>使用</Button>
+              {
+                data.map((value, index) => 
+                  <Box key={index}>
+                    <Typography>
+                      {value.name}
+                      <Button onClick={() => {saveAs(value, value.name)}}>
+                        下载
+                      </Button>
+                    </Typography>
+                  </Box>)
+              }
             </Stack>
           </CardContent>
         </Card>
