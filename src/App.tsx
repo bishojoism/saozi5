@@ -225,7 +225,9 @@ function Everything({file}: {file: File}) {
     else if (type.startWith('video/')) setNode(<video src={url} />)
     else if (type.startsWith('audio/')) setNode(<audio src={url} />)
     else setNode(null)
-    return () => url && URL.revokeObjectURL(url)
+    return () => {
+      if (url) URL.revokeObjectURL(url)
+    }
   })
   return node
 }
