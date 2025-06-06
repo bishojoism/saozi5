@@ -1,5 +1,5 @@
 import { Accordion, AccordionDetails, AccordionSummary, AppBar, Backdrop, Box, Button, ButtonGroup, Card, CardContent, CardHeader, CircularProgress, Container, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, InputAdornment, Link, Stack, Tab, Tabs, TextField, Toolbar, Typography } from "@mui/material";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, ReactNode } from "react";
 import { decryptImage, encryptImage } from "./saozi5";
 import { MuiFileInput } from "mui-file-input";
 import { ContentCopy, ExpandMore, GitHub, Newspaper } from "@mui/icons-material";
