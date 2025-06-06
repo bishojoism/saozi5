@@ -221,14 +221,14 @@ function Everything({file}: {file: File}) {
   useEffect(() => {
     const {type} = file
     const url = (type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
-    if (type.startsWith('image/')) setNode(<img src={url} />)
-    else if (type.startsWith('video/')) setNode(<video src={url} />)
-    else if (type.startsWith('audio/')) setNode(<audio src={url} />)
+    if (type.startsWith('image/')) setNode(<img src={url} alt="预览" />)
+    else if (type.startsWith('video/')) setNode(<video src={url} controls />)
+    else if (type.startsWith('audio/')) setNode(<audio src={url} controls />)
     else setNode(null)
     return () => {
       if (url) URL.revokeObjectURL(url)
     }
-  })
+  }, [file])
   return node
 }
 
