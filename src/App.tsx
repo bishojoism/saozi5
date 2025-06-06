@@ -216,6 +216,20 @@ function ImageCode() {
   )
 }
 
+function Everything({file}: {file: File}) {
+  const [node, setNode] = useState<ReactNode>(null)
+  useEffect(() => {
+    const {type} = file
+    const url = (type.startsWith('image/') || type.startWith('video/') || type.startWith('audio/')) ? URL.createObjectURL(file) : undefined
+    if (type.startsWith('image/')) setNode(<img src={url} />)
+    else if (type.startWith('video/')) setNode(<video src={url} />)
+    else if (type.startsWith('audio/')) setNode(<audio src={url} />)
+    else setNode(null)
+    return () => url && URL.revokeObjectURL(url)
+  })
+  return node
+}
+
 function EverythingCode() {
   const [code, setCode] = useState('')
   const [loading, setLoading] = useState(false)
@@ -289,6 +303,7 @@ function EverythingCode() {
                         保存
                       </Button>
                     </Typography>
+                    <Everything file={value}/>
                   </Box>)
               }
             </Stack>
