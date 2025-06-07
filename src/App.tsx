@@ -223,8 +223,9 @@ function Everything({ file }: { file: File }) {
     const { name } = file
     const index = name.lastIndexOf('.')
     const type = index === -1 ? '' : mime.getType(name.substring(index + 1)) ?? ''
-    const url = (type && type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
-    if (type.startsWith('image/')) setNode(<img src={url} alt="预览" width="100%" />)
+    const url = (type.startsWith('text/') || type.startsWith('image/') || type.startsWith('video/') || type.startsWith('audio/')) ? URL.createObjectURL(file) : undefined
+    if (type.startsWith('text/')) setNode(<iframe src={url} width="100%" />)
+    else if (type.startsWith('image/')) setNode(<img src={url} alt="预览" width="100%" />)
     else if (type.startsWith('video/')) setNode(<video src={url} controls width="100%" />)
     else if (type.startsWith('audio/')) setNode(<audio src={url} controls />)
     else setNode(null)
