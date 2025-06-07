@@ -1,4 +1,5 @@
 import { decode, encode } from "ns9_1"
+import mime from "mime";
 
 async function join(files: File[]): Promise<Uint8Array> {
     const buffers: Uint8Array[] = []
@@ -46,7 +47,8 @@ async function split(data: Uint8Array): Promise<File[]> {
         const content = data.slice(offset, offset + contentLength)
         offset += contentLength
 
-        files.push(new File([content], name))
+        const index = name.lastIndexOf('.')
+        files.push(new File([content], name, {type: index === -1 ? '' : mime.getType(name.substring(index + 1)) ?? ''}))
     }
 
     return files
