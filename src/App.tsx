@@ -7,6 +7,7 @@ import { saveAs } from "file-saver";
 import { decode, encode, init } from "ns9_1";
 import useLocalStorageBoolean from "./useLocalStorageBoolean";
 import { de, de2, en2 } from "./core";
+import mime from "mime";
 
 function ImageConfusion() {
   const [seed, setSeed] = useState('')
@@ -281,7 +282,9 @@ function EverythingCode() {
                         const url = decode(code).replace('https://i0.wp.com/', 'https://i1.wp.com/').replace('https://images.weserv.nl/?url=https://', 'https://i1.wp.com/').replace('https://cdn.cdnjson.com/pic.html?url=https://', 'https://i1.wp.com/')
                         const res = await fetch(url)
                         if (res.status !== 200) throw new Error(res.statusText)
-                        files.push(new File([await res.blob()], url.substring(url.lastIndexOf('/') + 1)))
+                        const name = url.substring(url.lastIndexOf('/') + 1)
+                        const index = name.lastIndexOf('.')
+                        files.push(new File([await res.blob()], name, {type: index === -1 ? '' : mime.getType(name.substring(index + 1)) ?? ''}))
                         err = undefined
                         break
                       } catch (e: any) {
